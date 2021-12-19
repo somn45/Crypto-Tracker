@@ -5,7 +5,7 @@ import Coin from './Coin';
 function Router() {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/:coinId" component={Coin}></Route>
           <Route path="/" component={Coins}></Route>

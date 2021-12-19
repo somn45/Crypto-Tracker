@@ -17,11 +17,22 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const Header = styled.header`
+  width: 600px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
 const Title = styled.h2`
+  text-align: center;
   font-size: 32px;
   color: ${(props) => props.theme.accentColor};
   margin-bottom: 40px;
 `;
+
+const Toggle = styled.button``;
 
 const TabList = styled.ul`
   width: 600px;
@@ -118,7 +129,11 @@ function Coin() {
   const loading = chartLoading || priceLoading;
   return (
     <Wrapper>
-      <Title>{state ? state.name : loading ? <h1>Loading...</h1> : chartData?.name}</Title>
+      <Header>
+        <Link to="/">Home</Link>
+        <Title>{state ? state.name : loading ? <h1>Loading...</h1> : chartData?.name}</Title>
+        <Toggle>{/* 다크/라이트 모드 전환 스위치 */}</Toggle>
+      </Header>
       {loading ? (
         <h1>Loading...</h1>
       ) : (
