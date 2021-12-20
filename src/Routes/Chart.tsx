@@ -23,7 +23,6 @@ function Chart() {
   const { isLoading, data } = useQuery<IHistorical[]>(['ohlcvData', coinId], () =>
     ohlcvDataFetch(coinId)
   );
-  console.log(data);
   return (
     <div>
       {isLoading ? (

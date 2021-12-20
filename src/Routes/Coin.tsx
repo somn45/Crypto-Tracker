@@ -19,20 +19,44 @@ const Wrapper = styled.div`
 
 const Header = styled.header`
   width: 600px;
+  height: 60px;
   padding: 0 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  * {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const HomeLink = styled.div`
+  display: flex;
+  a {
+    align-self: flex-start;
+  }
 `;
 
 const Title = styled.h2`
   text-align: center;
+  padding-bottom: 15px;
   font-size: 32px;
   color: ${(props) => props.theme.accentColor};
   margin-bottom: 40px;
+  align-self: flex-start;
 `;
 
-const Toggle = styled.button``;
+const Toggle = styled.button`
+  width: 80px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  align-self: flex-start;
+`;
 
 const TabList = styled.ul`
   width: 600px;
@@ -110,9 +134,21 @@ interface IChart {
   open_source: boolean;
 }
 
-interface IPrice {
+export interface IPrice {
   total_supply: number;
   max_supply: number;
+  quotes: {
+    USD: {
+      price: number;
+      ath_price: number;
+      percent_change_1h: number;
+      percent_change_6h: number;
+      percent_change_12h: number;
+      percent_change_24h: number;
+      percent_change_7d: number;
+      percent_change_30d: number;
+    };
+  };
 }
 
 function Coin() {
@@ -130,9 +166,13 @@ function Coin() {
   return (
     <Wrapper>
       <Header>
-        <Link to="/">Home</Link>
+        <HomeLink>
+          <Link to="/">Home</Link>
+        </HomeLink>
         <Title>{state ? state.name : loading ? <h1>Loading...</h1> : chartData?.name}</Title>
-        <Toggle>{/* 다크/라이트 모드 전환 스위치 */}</Toggle>
+        <div>
+          <Toggle>{/* 다크/라이트 모드 전환 스위치 */}</Toggle>
+        </div>
       </Header>
       {loading ? (
         <h1>Loading...</h1>
@@ -199,7 +239,18 @@ function Coin() {
 
           <Switch>
             <Route path="/:coinId/chart" component={Chart}></Route>
-            <Route path={`/${coinId}/price`} component={Price}></Route>
+            <Route path={`/${coinId}/price`} component={Price}>
+              <Price
+                price={priceData?.quotes.USD.price}
+                ath_price={priceData?.quotes.USD.ath_price}
+                percent_change_1h={priceData?.quotes.USD.percent_change_1h}
+                percent_change_6h={priceData?.quotes.USD.percent_change_6h}
+                percent_change_12h={priceData?.quotes.USD.percent_change_12h}
+                percent_change_24h={priceData?.quotes.USD.percent_change_24h}
+                percent_change_7d={priceData?.quotes.USD.percent_change_7d}
+                percent_change_30d={priceData?.quotes.USD.percent_change_30d}
+              />
+            </Route>
           </Switch>
         </div>
       )}
