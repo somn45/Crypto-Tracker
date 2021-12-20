@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import App from './App';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { theme } from './theme';
@@ -70,6 +71,7 @@ ReactDOM.render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <ReactQueryDevtools />
         <App />
       </ThemeProvider>
     </QueryClientProvider>

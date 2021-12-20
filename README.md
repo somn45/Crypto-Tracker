@@ -12,5 +12,5 @@
 
 - '/' => 메인 페이지(코인 리스트)
 - '/:coinId' => 코인 상세 페이지
-- '/:coinId/chart' => 코인 차트 페이지(구현 예정)
+- '/:coinId/chart' => 코인 Candlestick 차트 페이지
 - '/:coinId/price' => 코인 가격 등락율 페이지(구현 예정)

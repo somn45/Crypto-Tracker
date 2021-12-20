@@ -13,3 +13,11 @@ export const priceDataFetch = (coinId: string) => {
     response.json()
   );
 };
+
+export const ohlcvDataFetch = (coinId: string) => {
+  const endDay = new Date().toISOString();
+  const startDay = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30).toISOString();
+  return fetch(
+    `https://api.coinpaprika.com/v1/coins/${coinId}/ohlcv/historical?start=${startDay}&end=${endDay}`
+  ).then((response) => response.json());
+};

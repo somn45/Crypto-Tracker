@@ -70,7 +70,7 @@ const NavigaterBox = styled.div`
   min-width: 420px;
   height: 40px;
   border-radius: 20px;
-  margin-top: 30px;
+  margin: 30px 0;
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(3, 1fr);
@@ -198,7 +198,7 @@ function Coin() {
           </NavigaterBox>
 
           <Switch>
-            <Route path={`/${coinId}/chart`} component={Chart}></Route>
+            <Route path="/:coinId/chart" component={Chart}></Route>
             <Route path={`/${coinId}/price`} component={Price}></Route>
           </Switch>
         </div>
